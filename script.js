@@ -45,8 +45,13 @@ function displayProducts() {
             <h3>${product.name}</h3>
             <p>Category: ${product.category}</p>
             <p>Price: ₹${product.price}</p>
+
             <button onclick="viewProduct('${product.name}')">
                 View Product
+            </button>
+
+            <button onclick="editProduct('${product.name}')">
+                Edit
             </button>
 
             <button onclick="deleteProduct('${product.name}')">
@@ -59,7 +64,6 @@ function displayProducts() {
 }
 
 displayProducts();
-
 
 const searchInput = document.getElementById("search-input");
 const categoryFilter = document.getElementById("category-filter");
@@ -96,8 +100,13 @@ function displayFilteredProducts(filteredProducts) {
             <h3>${product.name}</h3>
             <p>Category: ${product.category}</p>
             <p>Price: ₹${product.price}</p>
+
             <button onclick="viewProduct('${product.name}')">
                 View Product
+            </button>
+
+            <button onclick="editProduct('${product.name}')">
+                Edit
             </button>
 
             <button onclick="deleteProduct('${product.name}')">
@@ -110,8 +119,8 @@ function displayFilteredProducts(filteredProducts) {
 }
 
 searchInput.addEventListener("input", filterProducts);
-categoryFilter.addEventListener("change", filterProducts);
 
+categoryFilter.addEventListener("change", filterProducts);
 
 const productForm = document.getElementById("product-form");
 
@@ -143,7 +152,6 @@ productForm.addEventListener("submit", function(event) {
     displayProducts();
 });
 
-
 function viewProduct(productName) {
     alert("You selected: " + productName);
 }
@@ -155,6 +163,57 @@ function deleteProduct(productName) {
 
     if (productIndex !== -1) {
         products.splice(productIndex, 1);
+
+        displayProducts();
+    }
+}
+
+function editProduct(productName) {
+    const product = products.find(function(product) {
+        return product.name === productName;
+    });
+
+    if (product) {
+        const newName = prompt(
+            "Enter new product name:",
+            product.name
+        );
+
+        if (newName === null) {
+            return;
+        }
+
+        const newPrice = prompt(
+            "Enter new price:",
+            product.price
+        );
+
+        if (newPrice === null) {
+            return;
+        }
+
+        const newCategory = prompt(
+            "Enter new category (Electronics, Accessories, Fashion):",
+            product.category
+        );
+
+        if (newCategory === null) {
+            return;
+        }
+
+        if (
+            newName.trim() === "" ||
+            newPrice.trim() === "" ||
+            newCategory.trim() === ""
+        ) {
+            alert("Please enter valid values.");
+            return;
+        }
+
+        product.name = newName.trim();
+        product.price = Number(newPrice);
+        product.category = newCategory.trim();
+
         displayProducts();
     }
 }
