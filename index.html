@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Product Store</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>Smart Product Store</h1>
+        <p>Find and manage your favourite products</p>
+    </header>
+
+    <main>
+
+        <section>
+            <h2>Our Products</h2>
+
+            <div class="controls">
+                <input type="text" id="search-input" placeholder="Search products...">
+
+                <select id="category-filter">
+                    <option value="all">All Categories</option>
+                    <option value="Electronics">Electronics</option>
+                    <option value="Accessories">Accessories</option>
+                    <option value="Fashion">Fashion</option>
+                </select>
+            </div>
+
+            <div class="product-form">
+                <h2>Add New Product</h2>
+
+                <form id="product-form">
+                    <input type="text" id="product-name" placeholder="Product name">
+
+                    <input type="number" id="product-price" placeholder="Product price">
+
+                    <select id="product-category">
+                        <option value="">Select Category</option>
+                        <option value="Electronics">Electronics</option>
+                        <option value="Accessories">Accessories</option>
+                        <option value="Fashion">Fashion</option>
+                    </select>
+
+                    <button type="submit">Add Product</button>
+                </form>
+
+                <p id="form-message"></p>
+            </div>
+
+            <div id="product-list">
+                <!-- Products will appear here using JavaScript -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Smart Product Store</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
